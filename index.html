@@ -1,1 +1,445 @@
-.
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Yousra 💫</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    background: #0a0010;
+  }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #s1 { background: linear-gradient(145deg, #0d001a 0%, #1e0040 40%, #3a0080 70%, #6a0dad 100%); }
+  #s2 { background: linear-gradient(145deg, #1a0030 0%, #2d0060 40%, #5c0099 70%, #c0392b 100%); }
+  #s3 { background: linear-gradient(145deg, #0a0018 0%, #120030 50%, #1a0040 100%); }
+  #s4 { background: linear-gradient(145deg, #100020 0%, #2a0055 40%, #6a1080 70%, #c0206a 100%); }
+  #s5 { background: linear-gradient(145deg, #050010 0%, #1a0035 30%, #3d0070 60%, #7b00d4 100%); }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    pointer-events: none;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0,0) scale(1); }
+    100% { transform: translate(40px,-30px) scale(1.1); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.35);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    animation: bob 2s ease-in-out infinite;
+    z-index: 10;
+  }
+  @keyframes bob {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    max-width: 760px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .line {
+    font-size: clamp(1.05rem, 2.8vw, 1.7rem);
+    color: rgba(255,255,255,0.88);
+    text-align: center;
+    font-weight: 300;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s ease, transform 0.85s ease;
+    max-width: 680px;
+  }
+  .line.strong {
+    font-weight: 700;
+    color: #fff;
+    font-size: clamp(1.25rem, 3.2vw, 2rem);
+  }
+  .line.italic { font-style: italic; color: rgba(255,255,255,0.65); }
+  .line.in { opacity: 1; transform: translateY(0); }
+
+  .hero {
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.05;
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.175,.885,.32,1.275);
+    text-shadow: 0 0 60px rgba(200,80,255,0.6);
+  }
+  .hero.in { opacity: 1; transform: scale(1) translateY(0); }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #ff6bcb, #ffb347, #ff6b6b, #c471f5);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    0%  { background-position: 0% 50%; }
+    100%{ background-position: 300% 50%; }
+  }
+
+  .gif-wrap {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 40px rgba(180,60,255,0.25);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1s ease 0.4s, transform 1s ease 0.4s;
+    border: 1px solid rgba(255,255,255,0.1);
+    margin: 8px auto;
+  }
+  .gif-wrap img { width: 100%; display: block; }
+  .gif-wrap.in { opacity: 1; transform: scale(1); }
+
+  .bar {
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #c471f5, #fa71cd);
+    border-radius: 2px;
+    margin: 4px auto;
+    transition: width 0.9s ease;
+  }
+  .bar.in { width: 60px; }
+
+  .dots {
+    font-size: 2rem;
+    letter-spacing: 18px;
+    color: rgba(255,255,255,0.3);
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    margin: 10px 0;
+  }
+  .dots.in { opacity: 1; }
+
+  .love {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.75);
+    transition: opacity 1.3s ease, transform 1.3s cubic-bezier(.175,.885,.32,1.275);
+    text-shadow: 0 0 80px rgba(255,100,180,0.8);
+    animation: lovePulse 3s ease-in-out infinite;
+    animation-play-state: paused;
+    margin: 12px 0;
+  }
+  .love.in {
+    opacity: 1;
+    transform: scale(1);
+    animation-play-state: running;
+  }
+  @keyframes lovePulse {
+    0%,100% { text-shadow: 0 0 30px rgba(255,100,180,0.5); }
+    50%      { text-shadow: 0 0 90px rgba(255,100,180,1), 0 0 140px rgba(255,100,180,0.4); }
+  }
+
+  .final {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255,200,80,0.5);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .final.in { opacity: 1; transform: translateY(0); }
+
+  .fire {
+    display: inline-block;
+    animation: fireRock 0.55s ease-in-out infinite alternate;
+  }
+  @keyframes fireRock {
+    from { transform: rotate(-6deg) scale(1); }
+    to   { transform: rotate(6deg) scale(1.12); }
+  }
+
+  .star {
+    display: inline-block;
+    animation: starSpin 5s linear infinite;
+  }
+  @keyframes starSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .hearts-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .fheart {
+    position: absolute;
+    bottom: -40px;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    font-size: 1.4rem;
+  }
+  @keyframes floatUp {
+    0%   { opacity: 0;   transform: translateY(0)   rotate(0deg); }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.2; }
+    100% { opacity: 0;   transform: translateY(-100vh) rotate(360deg); }
+  }
+
+  .sparkle-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .sparkle-bg span {
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    animation: twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.8); }
+  }
+</style>
+</head>
+<body>
+
+<!-- SECTION 1 — OUVERTURE ÉNERGIQUE -->
+<section id="s1">
+  <div class="orb" style="width:500px;height:500px;background:#8b00ff;top:-100px;left:-100px;animation-duration:14s;"></div>
+  <div class="orb" style="width:400px;height:400px;background:#ff00aa;bottom:-80px;right:-80px;animation-duration:10s;animation-delay:-4s;"></div>
+  <div class="sparkle-bg" id="sp1"></div>
+
+  <div class="group">
+    <h1 class="hero" id="heroTitle">
+      ALERRRRRR<br>
+      <span class="gradient-text">YOUSRAAAAA</span>
+      <span class="fire">🔥</span>
+    </h1>
+
+    <div class="gif-wrap" id="gif1">
+      <img
+        src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
+        alt="Energie et motivation"
+        onerror="this.src='https://media.giphy.com/media/3oEjHWpiVIOGXT5l9u/giphy.gif'"
+      >
+    </div>
+
+    <p class="line strong" id="l1a">Let's gooooo 🚀</p>
+    <p class="line"         id="l1b">Tu peux le faire.</p>
+  </div>
+
+  <div class="scroll-hint">↓ SCROLL ↓</div>
+</section>
+
+
+<!-- SECTION 2 — MOTIVATION DYNAMIQUE -->
+<section id="s2">
+  <div class="orb" style="width:450px;height:450px;background:#9b1dff;top:10%;left:-80px;animation-duration:16s;"></div>
+  <div class="orb" style="width:350px;height:350px;background:#ff3a6e;bottom:5%;right:-60px;animation-duration:11s;animation-delay:-6s;"></div>
+
+  <div class="group" id="g2">
+    <div class="bar"></div>
+    <p class="line italic">"Je sais que c'est pas toujours facile…"</p>
+    <p class="line strong">Mais t'es forte.</p>
+    <p class="line">Beaucoup plus que tu le penses.</p>
+    <div class="bar"></div>
+    <p class="line strong">"T'as déjà dépassé des limites</p>
+    <p class="line strong">que t'imaginais impossibles."</p>
+  </div>
+</section>
+
+
+<!-- SECTION 3 — SOUTIEN CALME -->
+<section id="s3">
+  <div class="hearts-layer" id="heartLayer"></div>
+  <div class="orb" style="width:350px;height:350px;background:#4a0090;top:20%;right:-60px;animation-duration:18s;"></div>
+
+  <div class="group" id="g3">
+    <p class="line italic">Et même quand t'as des doutes…</p>
+    <div class="bar"></div>
+    <p class="line strong" style="font-size:clamp(1.6rem,4.5vw,2.8rem);">Je suis là.</p>
+    <p class="line">Je crois en toi, vraiment.</p>
+  </div>
+</section>
+
+
+<!-- SECTION 4 — ÉMOTION -->
+<section id="s4">
+  <div class="orb" style="width:500px;height:500px;background:#c2006a;top:-120px;right:-100px;animation-duration:13s;"></div>
+  <div class="orb" style="width:300px;height:300px;background:#6e00cc;bottom:-60px;left:-60px;animation-duration:9s;animation-delay:-3s;"></div>
+
+  <div class="group" id="g4">
+    <p class="line italic">Et au-delà de tout ça…</p>
+    <p class="line">Il y a quelque chose que je veux que tu saches…</p>
+    <div class="dots" id="dots">· &nbsp; · &nbsp; ·</div>
+    <p class="love" id="loveMsg">Je t'aime beaucoup &nbsp;💕</p>
+  </div>
+</section>
+
+
+<!-- SECTION 5 — FINAL INSPIRANT -->
+<section id="s5">
+  <div class="orb" style="width:480px;height:480px;background:#6600cc;top:-80px;left:-80px;animation-duration:15s;"></div>
+  <div class="orb" style="width:400px;height:400px;background:#cc0066;bottom:-100px;right:-80px;animation-duration:12s;animation-delay:-5s;"></div>
+  <div class="sparkle-bg" id="sp5"></div>
+
+  <div class="group" id="g5">
+    <div class="gif-wrap" id="gif2">
+      <img
+        src="https://media.giphy.com/media/26tknCqiJrBQG6bxC/giphy.gif"
+        alt="Succès et victoire"
+        onerror="this.src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif'"
+      >
+    </div>
+
+    <p class="line strong">Continue.</p>
+    <p class="line">N'abandonne pas.</p>
+    <div class="bar"></div>
+    <p class="final" id="finalTitle">ALER YOUSRA &nbsp;<span class="star">💫</span></p>
+  </div>
+</section>
+
+
+<script>
+/* SPARKLES */
+function makeSparkles(containerId, count) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement('span');
+    s.style.left  = Math.random() * 100 + '%';
+    s.style.top   = Math.random() * 100 + '%';
+    s.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    s.style.animationDelay    = (Math.random() * 4) + 's';
+    c.appendChild(s);
+  }
+}
+makeSparkles('sp1', 60);
+makeSparkles('sp5', 60);
+
+/* SECTION 1 — AUTO ANIMATE */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('heroTitle').classList.add('in'), 200);
+  setTimeout(() => document.getElementById('gif1').classList.add('in'),      700);
+  setTimeout(() => document.getElementById('l1a').classList.add('in'),       1300);
+  setTimeout(() => document.getElementById('l1b').classList.add('in'),       1700);
+});
+
+/* SECTION 2 & 3 — SCROLL REVEAL */
+function revealGroup(groupId) {
+  const g = document.getElementById(groupId);
+  if (!g) return;
+  const children = [...g.children];
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    children.forEach((el, i) => {
+      setTimeout(() => el.classList.add('in'), i * 220);
+    });
+    obs.unobserve(g);
+  }, { threshold: 0.25 });
+  obs.observe(g);
+}
+revealGroup('g2');
+revealGroup('g3');
+
+/* SECTION 4 — ÉMOTION avec pause */
+(function() {
+  const g = document.getElementById('g4');
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    const kids = [...g.children];
+    kids[0].classList.add('in');
+    setTimeout(() => kids[1].classList.add('in'), 400);
+    setTimeout(() => document.getElementById('dots').classList.add('in'), 1200);
+    setTimeout(() => document.getElementById('loveMsg').classList.add('in'), 2600);
+    obs.unobserve(g);
+  }, { threshold: 0.3 });
+  obs.observe(g);
+})();
+
+/* SECTION 5 — FINAL */
+(function() {
+  const g = document.getElementById('g5');
+  const obs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    const kids = [...g.children];
+    document.getElementById('gif2').classList.add('in');
+    setTimeout(() => kids[1].classList.add('in'), 600);
+    setTimeout(() => kids[2].classList.add('in'), 900);
+    setTimeout(() => kids[3].classList.add('in'), 1200);
+    setTimeout(() => document.getElementById('finalTitle').classList.add('in'), 1600);
+    obs.unobserve(g);
+  }, { threshold: 0.25 });
+  obs.observe(g);
+})();
+
+/* CŒURS FLOTTANTS */
+(function() {
+  const layer = document.getElementById('heartLayer');
+  const emojis = ['💕','💖','💗','🤍','✨','💜','🌸'];
+  let active = false;
+  const heartObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !active) {
+      active = true;
+      setInterval(() => {
+        const h = document.createElement('div');
+        h.className = 'fheart';
+        h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        h.style.left = Math.random() * 100 + '%';
+        const dur = (Math.random() * 5 + 5).toFixed(1) + 's';
+        h.style.animationDuration = dur;
+        h.style.fontSize = (Math.random() * 0.8 + 0.8).toFixed(2) + 'rem';
+        layer.appendChild(h);
+        setTimeout(() => h.remove(), parseFloat(dur) * 1000);
+      }, 550);
+    }
+  }, { threshold: 0.3 });
+  heartObs.observe(document.getElementById('s3'));
+})();
+</script>
+</body>
+</html>
